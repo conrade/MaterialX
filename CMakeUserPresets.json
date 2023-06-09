@@ -10,8 +10,7 @@
             "cacheVariables": {
                 "MATERIALX_BUILD_OIIO"            : "ON", 
                 "MATERIALX_OIIO_DIR"              : "$env{DWA_PREFIX_OPENIMAGEIO}",
-                "CMAKE_PREFIX_PATH"               : "$env{DWA_PREFIX_OPENIMAGEIO}",
-                "ZLIB_ROOT"                       : "/rel/rez/dwa/zlib/1.2.8.x.2.0.0.0/cpp_std-17.0"
+                "CMAKE_PREFIX_PATH"               : "$env{DWA_PREFIX_OPENIMAGEIO}"
             }
         },
         {
