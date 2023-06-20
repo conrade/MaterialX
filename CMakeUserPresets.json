@@ -5,12 +5,14 @@
             "name": "dwa-environment",
             "hidden": true,
             "environment": {
-                "DWA_PREFIX_OPENIMAGEIO"        : "/rel/rez/dwa/openimageio/2.3.20.0.x.0.1.0.1/os-CentOS-7/cpp_std-17.0/boost-1.73.0.x.2/openexr-2.5.7.x.0/python-3.7.7.x/zlib-1.2.8.x.2/qt-5.15.2.x.2/opencolorio-2.0.2.x.0"
+                "DWA_PREFIX_OPENIMAGEIO"        : "/rel/rez/dwa/openimageio/2.3.20.0.x.0.3.0.0/os-CentOS-7/cpp_std-17.0/boost-1.73.0.x.2/openexr-2.5.7.x.0/python-3.7.7.x/zlib-1.2.8.x.2/qt-5.15.2.x.3/opencolorio-2.0.2.x.0/freetype-2.8.1.x",
+                "DWA_PREFIX_OPENEXR"            : "/rel/test/CM-17351/openexr/2.5.7.x.0.0.1.9999/os-CentOS-7/cpp_std-17/python-3.7.7.x.1/zlib-1.2.8.x.2/boost-1.73.0.x.2"
+
             },
             "cacheVariables": {
                 "MATERIALX_BUILD_OIIO"            : "ON", 
                 "MATERIALX_OIIO_DIR"              : "$env{DWA_PREFIX_OPENIMAGEIO}",
-                "CMAKE_PREFIX_PATH"               : "$env{DWA_PREFIX_OPENIMAGEIO}"
+                "CMAKE_PREFIX_PATH"               : "$env{DWA_PREFIX_OPENIMAGEIO};$env{DWA_PREFIX_OPENEXR}"
             }
         },
         {
