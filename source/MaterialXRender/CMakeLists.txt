@@ -1,3 +1,4 @@
+cmake_policy(SET CMP0074 NEW)
 include_directories(
     ${EXTERNAL_INCLUDE_DIRS}
     ${CMAKE_CURRENT_SOURCE_DIR}/../)
