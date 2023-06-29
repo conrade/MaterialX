@@ -23,55 +23,26 @@ add_library(MaterialXRender ${materialx_source} ${materialx_headers} ${materialx
 
 add_definitions(-DMATERIALX_RENDER_EXPORTS)
 
+target_link_libraries(
+    MaterialXRender
+    MaterialXGenShader
+    ${CMAKE_DL_LIBS})
+
 if(MATERIALX_BUILD_OIIO)
     set(OPENIMAGEIO_ROOT_DIR ${MATERIALX_OIIO_DIR})
     list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/External/OpenImageIO")
     find_package(OpenImageIO REQUIRED)
     if(OPENIMAGEIO_FOUND)
-        message("--------------------- ${OPENIMAGEIO_LIBRARIES}")
         include_directories(${OPENIMAGEIO_INCLUDE_DIR})
-        target_link_libraries(MaterialXRender
-            PUBLIC
-                ${OPENIMAGEIO_LIBRARIES})
+        target_link_libraries(MaterialXRender ${OPENIMAGEIO_LIBRARIES})
         # Also needed by MaterialXTest:
         set(OPENIMAGEIO_FOUND "${OPENIMAGEIO_FOUND}" PARENT_SCOPE)
         set(OPENIMAGEIO_INCLUDE_DIR "${OPENIMAGEIO_INCLUDE_DIR}" PARENT_SCOPE)
         set(OPENIMAGEIO_LIBRARIES "${OPENIMAGEIO_LIBRARIES}" PARENT_SCOPE)
         set(OPENIMAGEIO_LIBRARY_DIRS "${OPENIMAGEIO_LIBRARY_DIRS}" PARENT_SCOPE)
         set(OPENIMAGEIO_ROOT_DIR "${OPENIMAGEIO_ROOT_DIR}" PARENT_SCOPE)
-
-        find_package(OpenEXR REQUIRED)
-        #if(OpenEXR_FOUND)
-            if(TARGET OpenEXR::IlmImfUtil)
-                set(OPENEXRUTIL OpenEXR::IlmImfUtil)
-                set(OPENEXRIEX IlmBase::Iex)
-                set(OPENEXRILMTHREAD IlmBase::IlmThread)
-                set(OPENEXROPENEXR OpenEXR::IlmImf)
-                set(IMATHIMATH IlmBase::Imath IlmBase::Half)
-            else()
-                set(OPENEXRUTIL OpenEXR::OpenEXRUtil)
-                set(OPENEXRIEX OpenEXR::Iex)
-                set(OPENEXRILMTHREAD OpenEXR::IlmThread)
-                set(OPENEXROPENEXR OpenEXR::OpenEXR)
-                set(IMATHIMATH Imath::Imath)
-            endif()
-            target_link_libraries(MaterialXRender
-                PUBLIC
-                    ${OPENEXRUTIL}
-                    ${OPENEXRIEX}
-                    ${OPENEXRILMTHREAD}
-                    ${OPENEXROPENEXR}
-                    ${IMATHIMATH}
-            )
-        #endif()
     endif()
 endif()
-
-target_link_libraries(MaterialXRender
-    PUBLIC
-        MaterialXGenShader
-        ${CMAKE_DL_LIBS}
-)
 
 set_target_properties(
     MaterialXRender PROPERTIES
