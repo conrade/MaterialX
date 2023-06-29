@@ -12,7 +12,8 @@
             "cacheVariables": {
                 "MATERIALX_BUILD_OIIO"            : "ON", 
                 "MATERIALX_OIIO_DIR"              : "$env{DWA_PREFIX_OPENIMAGEIO}",
-                "CMAKE_PREFIX_PATH"               : "$env{DWA_PREFIX_OPENIMAGEIO};$env{DWA_PREFIX_OPENEXR}"
+                "CMAKE_PREFIX_PATH"               : "$env{DWA_PREFIX_OPENIMAGEIO};$env{DWA_PREFIX_OPENEXR}",
+                "CMAKE_FIND_PACKAGE_PREFER_CONFIG" : "TRUE"
             }
         },
         {
