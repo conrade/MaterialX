@@ -34,13 +34,19 @@ if(MATERIALX_BUILD_OIIO)
     find_package(OpenImageIO REQUIRED)
     if(OPENIMAGEIO_FOUND)
         include_directories(${OPENIMAGEIO_INCLUDE_DIR})
-        target_link_libraries(MaterialXRender ${OPENIMAGEIO_LIBRARIES})
+        target_link_libraries(MaterialXRender 
+            ${OPENIMAGEIO_LIBRARIES}
+            /rel/rez/dwa/openimageio/2.3.20.0.x.0.3.0.0/os-CentOS-7/cpp_std-17.0/boost-1.73.0.x.2/openexr-2.5.7.x.0/python-3.7.7.x/zlib-1.2.8.x.2/qt-5.15.2.x.3/opencolorio-2.0.2.x.0/freetype-2.8.1.x/lib64/libOpenImageIO_Util.so
+        )
         # Also needed by MaterialXTest:
         set(OPENIMAGEIO_FOUND "${OPENIMAGEIO_FOUND}" PARENT_SCOPE)
         set(OPENIMAGEIO_INCLUDE_DIR "${OPENIMAGEIO_INCLUDE_DIR}" PARENT_SCOPE)
         set(OPENIMAGEIO_LIBRARIES "${OPENIMAGEIO_LIBRARIES}" PARENT_SCOPE)
         set(OPENIMAGEIO_LIBRARY_DIRS "${OPENIMAGEIO_LIBRARY_DIRS}" PARENT_SCOPE)
         set(OPENIMAGEIO_ROOT_DIR "${OPENIMAGEIO_ROOT_DIR}" PARENT_SCOPE)
+
+        find_package(OpenEXR REQUIRED)
+        target_link_libraries(MaterialXRender OpenEXR::OpenEXR)
     endif()
 endif()
 
